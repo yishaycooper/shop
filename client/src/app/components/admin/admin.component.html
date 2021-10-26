@@ -1,0 +1,68 @@
+<div *ngIf="error" class="error">{{ error | json }}</div>
+<h2 (click)="toggle()">Click ToAdd Item</h2>
+<ng-container *ngIf="show">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
+    <br />
+    <input formControlName="name" placeholder="name" />
+    <br /><br />
+    <input formControlName="category" placeholder="category" />
+    <br /><br />
+    <input formControlName="price" placeholder="price" />
+    <br /><br />
+    <input type="file" (change)="onFileSelect($event)" />
+
+    <br /><br />
+    <button type="submit" [disabled]="!myForm.valid">Submit</button>
+  </form>
+  <br /><br />
+</ng-container>
+
+<div
+  class="card"
+  class="item-list"
+  *ngFor="let item of items; let i = index"
+  style="
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    text-align: left;
+    max-width: 20%;
+    margin-left: 30%;
+  "
+>
+  <img src="http://localhost:14700/img?i={{ item['img'] }}" />
+  <div class="container">
+    <p>Category: {{ item["category"] }}</p>
+    <p>Id: {{ item["_id"] }}</p>
+    <p>Price: &#36;{{ item["price"] }}</p>
+  </div>
+  <button (click)="delet(item['_id'], item['img'])">Delete</button>
+  <button (click)="edit(item['_id'])" style="visibility: visible">Edit</button>
+
+  <br /><br />
+ 
+  <div *ngIf="listShow[listId.indexOf(item['_id'])]">
+    <div>
+      <form [formGroup]="editForm" (ngSubmit)="onEdit(item['_id'], item['img'])" novalidate>
+        <br />
+
+        <input formControlName="editName" placeholder="name" />
+        <br /><br />
+        <input formControlName="editCategory" placeholder="category" />
+        <br /><br />
+        <input formControlName="editPrice" placeholder="price" />
+        <br /><br />
+
+        <!-- <input  type="text" [(ngModel)]="curentId" value="{{ item['_id'] }}" [ngModelOptions]="{standalone: true}/> -->
+
+        <br /><br />
+        <input type="file" (change)="onEditFileSelect($event)" />
+
+        <br /><br />
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <br /><br />
+    
+  </div>
+</div>

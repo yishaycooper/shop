@@ -1,0 +1,30 @@
+<h2>Register</h2>
+<br />
+<div *ngIf="error" class="error">{{ error | json }}</div>
+<br />
+<form #RegisterForm="ngForm" (ngSubmit)="register(RegisterForm.value)">
+  <input type="text" ngModel name="email" placeholder="Email" />
+  <br /><br />
+  <input type="text" ngModel name="pass" placeholder="Password" />
+  <br /><br />
+  <button type="submit">Send</button>
+</form>
+
+<h2>Log in</h2>
+<br />
+<div *ngIf="loginerror" class="error">{{ loginerror | json }}</div>
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+  <input type="text" ngModel name="email" placeholder="Email" />
+  <br /><br />
+  <input type="text" ngModel name="pass" placeholder="Password" />
+  <br /><br />
+  <button type="submit">Send</button>
+</form>
+
+
+
+
+
+
+
+

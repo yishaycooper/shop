@@ -1,0 +1,18 @@
+* {
+    margin-left: 10%;
+    }
+
+h2 {
+    margin-left: 10%;
+    color: purple;
+  }
+
+form {
+    margin-left: 1%;
+  }
+
+.error {
+  margin-left: 10%;
+  color: red;
+  font-size: 30px;
+}
